@@ -1,0 +1,60 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Installer logs / build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+.eggs/
+wheels/
+
+# Pytest / coverage
+.pytest_cache/
+.cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+
+# Type-checker caches
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Runtime / config artifacts (tunneldup stores keys + confs here in dev)
+.tunneldup/
+tunneldup.log
+*.pid
+
+# setuptools_scm generated version file
+src/tunneldup/_version.py
+
+# Local secrets — never commit
+*.pem
+*.key
+secrets.*
+.env
+.env.*

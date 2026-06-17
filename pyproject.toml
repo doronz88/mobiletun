@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=68", "setuptools_scm>=8", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tunneldup"
+dynamic = ["version"]
+description = "Federate iPhones across Macs by registering one tunneld as an upstream of another."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "doronz88", email = "doron88@gmail.com" }]
+keywords = ["pymobiledevice3", "tunneld", "wireguard", "ios", "iphone"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: System :: Networking",
+]
+dependencies = [
+    "pymobiledevice3>=4.0",
+    "typer>=0.12",
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "requests>=2.30",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23", "httpx>=0.27", "pre-commit>=3.7", "ruff>=0.6"]
+
+[project.scripts]
+tunneldup = "tunneldup.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools_scm]
+version_file = "src/tunneldup/_version.py"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+asyncio_default_fixture_loop_scope = "function"
+
+
+[tool.ruff]
+target-version = "py310"
+line-length = 120
+fix = true
+
+[tool.ruff.lint]
+select = [
+    "YTT",   # flake8-2020
+    "B",     # flake8-bugbear
+    "A",     # flake8-builtins
+    "C4",    # flake8-comprehensions
+    "T10",   # flake8-debugger
+    "SIM",   # flake8-simplify
+    "I",     # isort
+    "E",     # pycodestyle
+    "W",
+    "F",     # pyflakes
+    "PGH",   # pygrep-hooks
+    "UP",    # pyupgrade
+    "RUF",   # ruff
+    "TRY",   # tryceratops
+]
+ignore = [
+    "A001",     # shadowing a built-in
+    "A002",     # function argument shadows a builtin (typer 'host' arg etc.)
+    "A003",     # class attribute shadows a builtin
+    "B008",     # function call in argument default — required by typer's API
+    "E501",     # line too long (formatter handles it)
+    "TRY003",   # avoid specifying long messages in exceptions
+    "TRY400",   # use logging.exception
+    "TRY301",   # abstract raise to inner function
+    "TRY300",   # consider moving statement to else block — style choice
+    "UP045",    # use X | None instead of Optional (keep Optional for compat)
+]
+
+[tool.ruff.format]
+preview = true
